@@ -14,10 +14,7 @@ import com.dailyfocusplanner.data.model.Task
 @Composable
 fun TasksScreen() {
 
-    // like: tasks = []
     val tasks = remember { mutableStateListOf<Task>() }
-
-    // like: currentInput = ""
     var taskText by remember { mutableStateOf("") }
 
     Column(
@@ -26,14 +23,10 @@ fun TasksScreen() {
             .padding(16.dp)
     ) {
 
-        Text(
-            text = "My Tasks",
-            fontSize = 24.sp
-        )
+        Text(text = "My Tasks", fontSize = 24.sp)
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // INPUT FIELD
         TextField(
             value = taskText,
             onValueChange = { taskText = it },
@@ -43,7 +36,6 @@ fun TasksScreen() {
 
         Spacer(modifier = Modifier.height(10.dp))
 
-        // ADD BUTTON
         Button(
             onClick = {
                 if (taskText.isNotBlank()) {
@@ -63,14 +55,30 @@ fun TasksScreen() {
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        // TASK LIST
         LazyColumn {
             items(tasks) { task ->
-                Text(
-                    text = "• ${task.title}",
-                    fontSize = 16.sp,
-                    modifier = Modifier.padding(8.dp)
-                )
+
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp)
+                ) {
+
+                    Checkbox(
+                        checked = task.isDone,
+                        onCheckedChange = { checked ->
+                            val index = tasks.indexOf(task)
+                            tasks[index] = task.copy(isDone = checked)
+                        }
+                    )
+
+                    Text(
+                        text = task.title,
+                        fontSize = 16.sp,
+                        modifier = Modifier.padding(start = 8.dp)
+                    )
+                }
             }
         }
     }
