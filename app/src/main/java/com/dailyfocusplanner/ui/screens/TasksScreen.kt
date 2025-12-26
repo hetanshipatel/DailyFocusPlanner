@@ -62,31 +62,44 @@ fun TasksScreen() {
 
         // TASK LIST
         LazyColumn {
-            items(tasks) { task ->
+    items(tasks) { task ->
 
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(8.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp)
+        ) {
 
-                    Text(
-                        text = task.title,
-                        fontSize = 16.sp,
-                        modifier = Modifier.weight(1f)
-                    )
-
-                    // DELETE BUTTON
-                    Button(
-                        onClick = {
-                            tasks.remove(task)
-                        }
-                    ) {
-                        Text("❌")
-                    }
+            // CHECKBOX (unchanged)
+            Checkbox(
+                checked = task.isDone,
+                onCheckedChange = { checked ->
+                    val index = tasks.indexOf(task)
+                    tasks[index] = task.copy(isDone = checked)
                 }
+            )
+
+            Text(
+                text = task.title,
+                fontSize = 16.sp,
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(start = 8.dp)
+            )
+
+            // DELETE BUTTON (NEW)
+            Button(
+                onClick = {
+                    tasks.remove(task)
+                }
+            ) {
+                Text("❌")
             }
+        }
+    }
+}
+
         }
     }
 }
