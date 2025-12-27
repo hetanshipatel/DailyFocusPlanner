@@ -61,7 +61,7 @@ fun TasksScreen() {
         Spacer(modifier = Modifier.height(20.dp))
 
         // TASK LIST
-        LazyColumn {
+       LazyColumn {
     items(tasks) { task ->
 
         Row(
@@ -71,7 +71,6 @@ fun TasksScreen() {
                 .padding(8.dp)
         ) {
 
-            // CHECKBOX (unchanged)
             Checkbox(
                 checked = task.isDone,
                 onCheckedChange = { checked ->
@@ -80,25 +79,59 @@ fun TasksScreen() {
                 }
             )
 
-            Text(
-                text = task.title,
-                fontSize = 16.sp,
-                modifier = Modifier
-                    .weight(1f)
-                    .padding(start = 8.dp)
-            )
+            // 🔹 IF this task is being edited
+            if (editingTaskId == task.id) {
 
-            // DELETE BUTTON (NEW)
-            Button(
-                onClick = {
-                    tasks.remove(task)
+                TextField(
+                    value = editingText,
+                    onValueChange = { editingText = it },
+                    modifier = Modifier.weight(1f)
+                )
+
+                Button(
+                    onClick = {
+                        val index = tasks.indexOf(task)
+                        tasks[index] = task.copy(title = editingText)
+                        editingTaskId = null
+                        editingText = ""
+                    }
+                ) {
+                    Text("Save")
                 }
-            ) {
-                Text("❌")
+
+            } else {
+
+                Text(
+                    text = task.title,
+                    fontSize = 16.sp,
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(start = 8.dp)
+                )
+
+                Button(
+                    onClick = {
+                        editingTaskId = task.id
+                        editingText = task.title
+                    }
+                ) {
+                    Text("✏️")
+                }
+
+                Spacer(modifier = Modifier.width(4.dp))
+
+                Button(
+                    onClick = {
+                        tasks.remove(task)
+                    }
+                ) {
+                    Text("❌")
+                }
             }
         }
     }
 }
+
 
         }
     }
