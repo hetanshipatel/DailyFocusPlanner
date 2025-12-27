@@ -16,6 +16,9 @@ fun TasksScreen() {
 
     val tasks = remember { mutableStateListOf<Task>() }
     var taskText by remember { mutableStateOf("") }
+    var editingTaskId by remember { mutableStateOf<Int?>(null) }
+    var editingText by remember { mutableStateOf("") }
+
 
     Column(
         modifier = Modifier
@@ -61,79 +64,77 @@ fun TasksScreen() {
         Spacer(modifier = Modifier.height(20.dp))
 
         // TASK LIST
-       LazyColumn {
-    items(tasks) { task ->
+        LazyColumn {
+            items(tasks) { task ->
 
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp)
-        ) {
-
-            Checkbox(
-                checked = task.isDone,
-                onCheckedChange = { checked ->
-                    val index = tasks.indexOf(task)
-                    tasks[index] = task.copy(isDone = checked)
-                }
-            )
-
-            // 🔹 IF this task is being edited
-            if (editingTaskId == task.id) {
-
-                TextField(
-                    value = editingText,
-                    onValueChange = { editingText = it },
-                    modifier = Modifier.weight(1f)
-                )
-
-                Button(
-                    onClick = {
-                        val index = tasks.indexOf(task)
-                        tasks[index] = task.copy(title = editingText)
-                        editingTaskId = null
-                        editingText = ""
-                    }
-                ) {
-                    Text("Save")
-                }
-
-            } else {
-
-                Text(
-                    text = task.title,
-                    fontSize = 16.sp,
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier
-                        .weight(1f)
-                        .padding(start = 8.dp)
-                )
-
-                Button(
-                    onClick = {
-                        editingTaskId = task.id
-                        editingText = task.title
-                    }
+                        .fillMaxWidth()
+                        .padding(8.dp)
                 ) {
-                    Text("✏️")
-                }
 
-                Spacer(modifier = Modifier.width(4.dp))
+                    Checkbox(
+                        checked = task.isDone,
+                        onCheckedChange = { checked ->
+                            val index = tasks.indexOf(task)
+                            tasks[index] = task.copy(isDone = checked)
+                        }
+                    )
 
-                Button(
-                    onClick = {
-                        tasks.remove(task)
+                    // 🔹 IF this task is being edited
+                    if (editingTaskId == task.id) {
+
+                        TextField(
+                            value = editingText,
+                            onValueChange = { editingText = it },
+                            modifier = Modifier.weight(1f)
+                        )
+
+                        Button(
+                            onClick = {
+                                val index = tasks.indexOf(task)
+                                tasks[index] = task.copy(title = editingText)
+                                editingTaskId = null
+                                editingText = ""
+                            }
+                        ) {
+                            Text("Save")
+                        }
+
+                    } else {
+
+                        Text(
+                            text = task.title,
+                            fontSize = 16.sp,
+                            modifier = Modifier
+                                .weight(1f)
+                                .padding(start = 8.dp)
+                        )
+
+                        Button(
+                            onClick = {
+                                editingTaskId = task.id
+                                editingText = task.title
+                            }
+                        ) {
+                            Text("✏️")
+                        }
+
+                        Spacer(modifier = Modifier.width(4.dp))
+
+                        Button(
+                            onClick = {
+                                tasks.remove(task)
+                            }
+                        ) {
+                            Text("❌")
+                        }
                     }
-                ) {
-                    Text("❌")
                 }
             }
         }
+
+
     }
 }
-
-
-        }
-    }
-}
-
