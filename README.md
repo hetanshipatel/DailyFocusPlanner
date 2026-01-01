@@ -12,7 +12,7 @@ The goal is to gradually build a clean and practical daily task planner while le
 - Home dashboard
 - Tasks screen
 
-<img width="1080" height="2400" alt="image" src="https://github.com/user-attachments/assets/93bfbfeb-6217-4091-a138-34b99c8ea3a5" />
+<img width="170" height="380" alt="image" src="https://github.com/user-attachments/assets/93bfbfeb-6217-4091-a138-34b99c8ea3a5" />
 
 - Add tasks using text input
 - Display tasks in a list
