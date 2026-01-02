@@ -25,11 +25,11 @@ The goal is to gradually build a clean and practical daily task planner while le
    <img width="170" height="380" alt="image" src="https://github.com/user-attachments/assets/51a88782-d414-4e79-8257-9e4c2804bdac" />
 
 - Display tasks in a list
+- Mark tasks as completed
+- Delete and Edit tasks
 
    <img width="170" height="380" alt="image" src="https://github.com/user-attachments/assets/93bfbfeb-6217-4091-a138-34b99c8ea3a5" />
 
-- Mark tasks as completed
-- Delete tasks
 - Persist tasks locally
 ---
 
