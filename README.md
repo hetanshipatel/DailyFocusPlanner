@@ -9,9 +9,21 @@ The goal is to gradually build a clean and practical daily task planner while le
 
 ## ✨ Current Features
 - Welcome screen
+
+   <img width="170" height="380" alt="image" src="https://github.com/user-attachments/assets/8a9a0d7f-f29b-4af7-8471-d1684c73ad47" />
+
 - Home dashboard
+
+   <img width="170" height="380" alt="image" src="https://github.com/user-attachments/assets/26edcda3-1118-4ff1-a3ca-d93c2ca769bb" />
+
 - Tasks screen
+
+   <img width="170" height="380" alt="image" src="https://github.com/user-attachments/assets/6b627a77-d7fb-454a-a6c1-6222d356e965" />
+
 - Add tasks using text input
+
+   <img width="170" height="380" alt="image" src="https://github.com/user-attachments/assets/51a88782-d414-4e79-8257-9e4c2804bdac" />
+
 - Display tasks in a list
 
    <img width="170" height="380" alt="image" src="https://github.com/user-attachments/assets/93bfbfeb-6217-4091-a138-34b99c8ea3a5" />
