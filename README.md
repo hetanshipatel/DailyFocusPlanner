@@ -28,8 +28,9 @@ The goal is to gradually build a clean and practical daily task planner while le
 
    <img width="170" height="380" alt="image" src="https://github.com/user-attachments/assets/93bfbfeb-6217-4091-a138-34b99c8ea3a5" />
 
-- Navigation between screens using Jetpack Navigation
-
+- Mark tasks as completed
+- Delete tasks
+- Persist tasks locally
 ---
 
 ## 🛠 Tech Stack
@@ -49,9 +50,7 @@ The goal is to gradually build a clean and practical daily task planner while le
 
 ## 🚧 Work in Progress
 Planned future improvements:
-- Mark tasks as completed
-- Delete tasks
-- Persist tasks locally
+- Navigation between screens using Jetpack Navigation
 - UI improvements (colors, icons, themes)
 - Better folder structure and refactoring
 
